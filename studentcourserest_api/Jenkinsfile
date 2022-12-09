@@ -1,6 +1,6 @@
 pipeline{
     agent { label 'dock'}
-    triggers { pollscm('* * * * *')}
+    triggers { pollSCM('* * * * *')}
    stages{
         stage ('clone'){
             steps{
