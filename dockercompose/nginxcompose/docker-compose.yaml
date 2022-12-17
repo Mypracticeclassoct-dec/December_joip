@@ -7,6 +7,8 @@ services:
         published: 8082
         protocol: tcp
         mode: host
+    networks:
+      - network1
   container2:
     image: httpd:2.4
     ports:
@@ -14,4 +16,10 @@ services:
         published: 8081
         protocol: tcp
         mode: host
-   
+networks:
+  network1:
+    driver: bridge
+    ipam:
+      driver: defaault
+      config:
+        - subnet: 10.10.0.0/24
