@@ -2,6 +2,6 @@ services:
   app:
    image: httpd
    ports:
-     -"8080:80"
+     - "8080:80"
   db:
    image: mysql
