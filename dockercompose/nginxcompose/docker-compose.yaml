@@ -8,8 +8,8 @@ services:
         protocol: tcp
         mode: host
     networks:
-      - network1
-  container2:
+      - network1  # container1 is running in network1 created by user.
+  container2:     # container2 is runnung on default network created by system.
     image: httpd:2.4
     ports:
       - target : 80
