@@ -20,6 +20,6 @@ networks:
   network1:
     driver: bridge
     ipam:
-      driver: defaault
+      driver: default
       config:
         - subnet: 10.10.0.0/24
