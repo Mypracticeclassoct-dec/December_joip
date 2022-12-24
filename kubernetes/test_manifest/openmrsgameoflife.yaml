@@ -1,0 +1,99 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      name: openmrs 
+      labels:
+       app: web
+    spec: 
+     containers:
+       - name: openmrs
+         image: vamsibakks/openmrs:2.0
+         ports: 
+           - containerPort: 8080
+             protocol: TCP      
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web2
+  template:
+    metadata:
+      name: gameoflife
+      labels:
+       app: web2
+    spec: 
+     containers:
+       - name: gameoflife
+         image: vamsibakks/gameoflife:1.0
+         ports: 
+           - containerPort: 8080
+             protocol: TCP 
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: service-openmrs
+spec:
+  type: LoadBalancer 
+  selector:
+    app: web 
+  ports:
+    - port: 35000
+      targetPort: 8080
+      nodePort: 30000
+      protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: service-gameoflife
+spec:
+  type: LoadBalancer 
+  selector:
+    app: web2 
+  ports:
+    - port: 35001
+      targetPort: 8080
+      nodePort: 30000
+      protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-test
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /openmrs
+        backend:
+          service:
+            name: service-openmrs
+            port:
+              number: 8080
+  - http:
+      paths:
+      - path: /gameoflife
+        backend:
+          service:
+            name: service-gameoflife
+            port:
+              number: 8080    
