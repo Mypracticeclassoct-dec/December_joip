@@ -7,4 +7,4 @@ WORKDIR /openmrs-core
 RUN mvn clean package 
 RUN cd openmrs-core/webapp && mvn jetty:run 
 EXPOSE 8080
-CMD ["openmrs/startup/sh"]
+CMD ["openmrs/startup.sh"]
