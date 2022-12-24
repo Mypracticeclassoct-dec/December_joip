@@ -4,4 +4,4 @@ RUN  apt update &&  apt install openjdk-11-jdk -y && apt install  tar gzip -y \
      && apt install maven -y \
      && git clone https://github.com/openmrs/openmrs-core.git 
 WORKDIR /openmrs-core 
-RUN mvn  package 
+RUN mvn clean package 
