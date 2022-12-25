@@ -78,7 +78,9 @@ kind: Ingress
 metadata:
   name: ingress-test
   annotations:
-    kubernetes.io/ingress.class: azure/application-gateway
+      kubernetes.io/ingress.class: alb
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
 spec:
   rules:
   - http:
