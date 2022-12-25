@@ -17,7 +17,7 @@ spec:
     spec: 
      containers:
        - name: openmrs
-         image: vamsibakks/openmrs:2.0
+         image: vamsibakka/openmrs:2.0
          ports: 
            - containerPort: 8080
              protocol: TCP      
@@ -40,7 +40,7 @@ spec:
     spec: 
      containers:
        - name: gameoflife
-         image: vamsibakks/gameoflife:1.0
+         image: vamsibakka/gameoflife:1.0
          ports: 
            - containerPort: 8080
              protocol: TCP 
