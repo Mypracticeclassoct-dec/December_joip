@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: core
+  name: openmrstest
 spec:
   minReadySeconds: 10
   replicas: 1
@@ -25,7 +25,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: core
+  name: gameoflifetest
 spec:
   minReadySeconds: 10
   replicas: 1
@@ -68,7 +68,7 @@ spec:
   selector:
     app: web2 
   ports:
-    - port: 35001
+    - port: 35000
       targetPort: 8080
       #nodePort: 30000
       protocol: TCP
