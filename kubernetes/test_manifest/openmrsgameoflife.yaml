@@ -53,7 +53,6 @@ spec:
   type: LoadBalancer 
   selector:
     app: web
-    app1: web2
   ports:
     - port: 35000
       targetPort: 8080
