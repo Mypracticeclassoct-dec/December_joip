@@ -68,7 +68,7 @@ spec:
   selector:
     app1: web2 
   ports:
-    - port: 35000
+    - port: 35001
       targetPort: 8080
       #nodePort: 30000
       protocol: TCP
