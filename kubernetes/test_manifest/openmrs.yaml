@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openmrs 
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      name: openmrs
+      labels:
+        app: web
+    spec:
+      containers:
+        name: openmrs
+        image: vamsibakka/openmrs:2.0
+        ports: 
+          - containerPort: 8080
+            protocol: TCP 
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: service-openmrs
+spec:
+  type: LoadBalancer 
+  selector:
+    app: web
+  ports:
+    - port: 35000
+      targetPort: 8080
+      nodePort: 30000
+      protocol: TCP
+---
